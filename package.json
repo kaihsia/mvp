@@ -1,0 +1,30 @@
+{
+  "name": "photo-viewer-practice",
+  "version": "1.0.0",
+  "description": "## How to use this",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app/server.js",
+    "build": "babel --watch src -d dist --ignore=node_modules --source-maps inline"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "jquery": "^3.1.1",
+    "lodash": "^4.17.2",
+    "path": "^0.12.7",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "request": "^2.79.0",
+    "yelp": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-stage-0": "^6.16.0"
+  }
+}
