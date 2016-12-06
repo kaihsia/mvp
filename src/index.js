@@ -1,1 +1,1 @@
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App getTweets={getTweets} postSearch={postSearch}/>, document.getElementById('app'));

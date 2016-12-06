@@ -18,7 +18,9 @@
     "path": "^0.12.7",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "regex": "^0.1.1",
     "request": "^2.79.0",
+    "twitter": "^1.5.0",
     "yelp": "^1.0.1"
   },
   "devDependencies": {
