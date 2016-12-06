@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname + '/../dist')));
 
+// GET ALL TWEETS MANUALLY
 // app.get('/tweets', function(req, res) {
 //   twitter('press', function(arr) {
 //     res.send(arr);
