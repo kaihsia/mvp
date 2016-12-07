@@ -19,7 +19,7 @@ var filter = function(query, cb) {
       console.log(err);
       return;
     }
-    console.log(tweets);
+    // console.log(tweets);
     _.each(tweets, function(tweet) {
       var buf = Buffer.from(tweet.text);
       if (buf.indexOf(query) > -1) {

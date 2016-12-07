@@ -25,18 +25,26 @@ app.get('/info', function(req, res) {
 app.post('/search', function(req, res) {
   // console.log('something posted', req.body);
   var find = req.body.query;
-  twitter.filter(find, function(arr) {
-
-    db.collection.insert(arr, function(err, docs) {
-      if (err) {
-          console.log(err);
-          return;
+    db.find({text: {$regex: find, $options: 'g'}}, function(err, data) {
+      if (data.length !== 0) {
+        console.log('db!');
+        res.send(data);
       } else {
-          console.log('potatoes were successfully stored.', docs.length);
+        twitter.filter(find, function(arr) {
+          console.log('api!');
+          db.collection.insert(arr, function(err, docs) {
+            if (err) {
+               console.log(err);
+               return;
+            } else {
+               console.log('potatoes were successfully stored.', docs.length);
+            }
+          });
+          res.send(arr);
+        });
       }
     });
-    res.send(arr);
-  });
+    // res.send(arr);
 });
 
 app.listen(4000);
