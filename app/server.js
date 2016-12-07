@@ -37,7 +37,7 @@ app.post('/search', function(req, res) {
                console.log(err);
                return;
             } else {
-               console.log('potatoes were successfully stored.', docs.length);
+               console.log('potatoes were successfully stored.');
             }
           });
           res.send(arr);
