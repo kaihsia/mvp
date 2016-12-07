@@ -1,6 +1,7 @@
-var getTweets = (endpoint, cb) => {
+var getInfo = (endpoint, cb) => {
   $.get(endpoint)
     .done(function(data) {
+      // console.log(data);
       cb(data);
     })
     .fail(function(err) {
@@ -21,5 +22,5 @@ var postSearch = (endpoint, data, cb) => {
 };
 
 
-window.getTweets = getTweets;
+window.getInfo = getInfo;
 window.postSearch = postSearch;

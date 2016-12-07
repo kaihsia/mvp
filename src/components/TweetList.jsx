@@ -1,12 +1,11 @@
 var TweetList = (props) => {
   // console.log('tweets', props.tweets);
   return (
-    <div className="container">
       <div className="row">
-        <ul>
-          { props.tweets.map( (tweet) => <Tweet tweet={tweet.text} /> ) }
+        <ul className="list-unstyled">
+          { props.tweets.map( (tweet) => <Tweet tweet={tweet} userName={props.userName}/> ) }
         </ul>
+        <h4>{props.notFound}</h4>
       </div>
-    </div>
   );
 };

@@ -5,30 +5,25 @@ class App extends React.Component {
 
     this.state = {
       tweets: [],
-      query: ''
+      query: '',
+      info: '',
+      notFound: ''
     };
-
   }
 
-  // GET request
-  // componentDidMount() {
-  //   this.getTweet('/tweets');
-  // }
-  //
-  // getTweet(url) {
-  //   this.props.getTweets(url, (tweets) => {
-  //     this.setState({
-  //       tweets: tweets
-  //     });
-  //   });
-  // }
+  //GET request
+  componentDidMount() {
+    this.getInfo('/info');
+  }
+  getInfo(url) {
+    this.props.getInfo(url, (info) => {
+      console.log(info);
+      this.setState({
+        info: info
+      });
+    });
+  }
 
-  // handleClick(event) {
-    // query.preventDefault();
-    // this.props.postSearch('/search', this.state, (dat) => {
-    //   console.log(dat);
-    // });
-  // }
 
   // POST request
   handleChange(event) {
@@ -37,7 +32,6 @@ class App extends React.Component {
     });
     // console.log('change', event.target.value);
   }
-
   handleSubmit(event) {
     // console.log('submit', event.target);
     event.preventDefault();
@@ -47,23 +41,30 @@ class App extends React.Component {
     };
     // console.log('query', this.state.query);
     this.props.postSearch('/search', option, (dat) => {
-      console.log(dat);
-      this.setState({
-        tweets: dat
-      });
+      // console.log(dat);
+      if (dat.length === 0) {
+        this.setState({
+          notFound: 'No Tweets about that. Sorry :(',
+          tweets: []
+        });
+      } else {
+        this.setState({
+          tweets: dat,
+          notFound:''
+        });
+      }
     });
-
   }
 
-  // handleClick(e) {
-  //   console.log('click', e.target.value);
-  // }
   render() {
     return (
       <div className="container">
-        <h1>The @$#% TRUMP SAYS</h1>
-        <SearchBar query={this.state.query} change={this.handleChange.bind(this)} submit={this.handleSubmit.bind(this)}/>
-        <TweetList tweets={this.state.tweets}/>
+        <center>
+          <h1>The @$#% THAT @{this.state.info.user_name} SAYS</h1>
+          <img src={this.state.info.profile_image_url} className="img-responsive" alt="profile" />
+          <SearchBar userName={this.state.info.user_name} query={this.state.query} change={this.handleChange.bind(this)} submit={this.handleSubmit.bind(this)}/>
+          <TweetList notFound={this.state.notFound} userName={this.state.info.user_name} tweets={this.state.tweets}/>
+        </center>
       </div>
     );
   }
