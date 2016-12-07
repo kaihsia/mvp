@@ -27,11 +27,11 @@ app.post('/search', function(req, res) {
   var find = req.body.query;
     db.find({text: {$regex: find, $options: 'g'}}, function(err, data) {
       if (data.length !== 0) {
-        console.log('db!');
+        console.log('query from DATABASE!');
         res.send(data);
       } else {
         twitter.filter(find, function(arr) {
-          console.log('api!');
+          console.log('GET request from Twitter API!');
           db.collection.insert(arr, function(err, docs) {
             if (err) {
                console.log(err);
